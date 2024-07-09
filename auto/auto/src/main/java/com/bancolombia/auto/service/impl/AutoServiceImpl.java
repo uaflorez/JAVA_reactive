@@ -1,5 +1,6 @@
 package com.bancolombia.auto.service.impl;
 
+import com.bancolombia.auto.dto.AutoDto;
 import com.bancolombia.auto.model.AutoEntity;
 import com.bancolombia.auto.repository.IAutoRepository;
 import com.bancolombia.auto.service.IAutoService;
@@ -26,7 +27,7 @@ public class AutoServiceImpl implements IAutoService {
     }
 
     @Override
-    public AutoEntity save(AutoEntity vehiculo) {
+    public AutoEntity save(AutoDto vehiculo) {
         return vehiculoRepository.save(vehiculo);
     }
 
