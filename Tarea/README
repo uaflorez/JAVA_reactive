@@ -1,0 +1,17 @@
+Descripción de los TODOs:
+getTotalBalance: Implementar el cálculo del saldo total utilizando map y reduce.
+getDeposits: Implementar la obtención de todas las transacciones de tipo "deposit" utilizando filter.
+getWithdrawals: Implementar la obtención de todas las transacciones de tipo "withdrawal" utilizando filter.
+filterTransactions: Implementar un método genérico para filtrar transacciones utilizando una función Function.
+getTotalDeposits: Implementar el cálculo del total de depósitos utilizando mapToDouble y sum.
+getLargestWithdrawal: Implementar la búsqueda del retiro de mayor monto utilizando max.
+getTransactionsOnDate: Implementar la obtención de transacciones en una fecha específica utilizando filter.
+getAverageTransactionAmount: Implementar el cálculo del monto promedio de las transacciones utilizando mapToDouble y average.
+getTransactionsWithAmountGreaterThan: Implementar la obtención de transacciones con monto mayor a un valor específico utilizando filter.
+transfer: Implementar la transferencia de fondos entre cuentas utilizando addTransaction.
+getTotalWithdrawals: Implementar el cálculo del total de retiros utilizando mapToDouble y sum.
+getTransactionsSummary: Implementar un resumen de transacciones agrupado por tipo utilizando collect y groupingBy.
+Notas:
+Asegúrate de proporcionar a los estudiantes un breve repaso de los conceptos de programación funcional antes de comenzar el taller.
+Permite tiempo para preguntas y asistencia durante el taller.
+Anima a los estudiantes a probar y verificar sus implementaciones descomentando las líneas de prueba en el método main.
