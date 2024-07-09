@@ -1,12 +1,9 @@
-package com.ms.auto.controller.v1;
+package com.ms.auto.controller.v1.v1;
 
 
-import com.ms.auto.dto.AutoDto;
 import com.ms.auto.model.AutoEntity;
 import com.ms.auto.service.IAutoService;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
