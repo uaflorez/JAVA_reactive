@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface IAutoRepository extends JpaRepository<AutoEntity,Long> {
     //JPA Query Methods
 
-    Optional<AutoEntity> findByModelAndTipo(String model , String tipo);
+    Optional<AutoEntity> findByModeloAndTipo(Integer model , String tipo);
 
-    Optional<AutoEntity> findByModel(String email);
+    //Optional<AutoEntity> findByModelo(String modelo);
 }
