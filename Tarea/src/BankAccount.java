@@ -68,40 +68,52 @@ public class BankAccount {
     // TODO 7: Implementar getTransactionsOnDate utilizando streams y filter
     public Optional<List<Transaction>> getTransactionsOnDate(String date) {
         // TODO 7
-        return null;
+        return Optional.of(transactions.stream()
+                .filter(transaction -> transaction.getDate().equals(date))
+                .collect(Collectors.toList()));
 
     }
 
     // TODO 8: Implementar getAverageTransactionAmount utilizando streams y mapToDouble
     public OptionalDouble getAverageTransactionAmount() {
         // TODO 8
-        return null;
+        return transactions.stream()
+                .mapToDouble(Transaction::getAmount)
+                .average();
 
     }
 
     // TODO 9: Implementar getTransactionsWithAmountGreaterThan utilizando streams y filter
     public Optional<List<Transaction>> getTransactionsWithAmountGreaterThan(double amount) {
         // TODO 9
-        return null;
+        return Optional.of(transactions.stream()
+                .filter(transaction -> transaction.getAmount() > amount)
+                .collect(Collectors.toList()));
 
     }
 
     // TODO 10: Implementar transfer utilizando addTransaction
     public static void transfer(BankAccount sourceAccount, BankAccount targetAccount, double amount) {
         // TODO 10
+        sourceAccount.addTransaction(new Transaction(-amount, "withdrawal", "2024-05-13")); // Asume la fecha actual
+        targetAccount.addTransaction(new Transaction(amount, "deposit", "2024-05-13"));
 
     }
 
     // TODO 11: Implementar getTotalWithdrawals utilizando getWithdrawals y mapToDouble
     public Optional<Double> getTotalWithdrawals() {
         // TODO 11
-        return null;
+        return getWithdrawals()
+                .map(withdrawals -> withdrawals.stream()
+                .mapToDouble(Transaction::getAmount)
+                .sum());
 
     }
 
     // TODO 12: Implementar getTransactionsSummary utilizando streams, map y collect
     public Map<String, Double> getTransactionsSummary() {
         // TODO 12
-        return null;
+        return transactions.stream()
+                .collect(Collectors.groupingBy(Transaction::getType, Collectors.summingDouble(Transaction::getAmount)));
     }
 }
