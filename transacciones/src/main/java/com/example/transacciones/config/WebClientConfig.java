@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
 public class WebClientConfig {
 
     @Bean
-    public WebClient buildWebClient(WebClient.Builder webClient){
+    public WebClient buildWebClient(WebClient.Builder webClient) {
         return webClient
                 .baseUrl("http://localhost:8090")
                 .defaultStatusHandler(HttpStatusCode::is4xxClientError, clientResponse -> {
@@ -25,13 +25,15 @@ public class WebClientConfig {
                 // .defaultStatusHandler(HttpStatusCode::is5xxServerError, clientResponse -> {})
                 .build();
     }
-    @Bean
-    public IProcessRestClient buildProcessRestClient(WebClient client){
 
-        HttpServiceProxyFactory factory =  HttpServiceProxyFactory
+    @Bean
+    public IProcessRestClient buildProcessRestClient(WebClient client) {
+
+        HttpServiceProxyFactory factory = HttpServiceProxyFactory
                 .builderFor(WebClientAdapter.create(client)).build();
 
         return factory.createClient(IProcessRestClient.class);
 
 
     }
+}

@@ -1,5 +1,6 @@
 package com.example.entrega.config;
-import com.example.digitalbanking.service.IClienteRestClient;
+
+import com.example.entrega.exception.Exception400;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatusCode;
@@ -10,22 +11,15 @@ import reactor.core.publisher.Mono;
 
 @Configuration
 public class WebClientConfig {
-
-
     @Bean
-    public WebClient webClient(WebClient.Builder builder) {
-        return builder.baseUrl("http://localhost:8090")
+    public WebClient buildWebClient(WebClient.Builder webClient) {
+        return webClient
+                .baseUrl("http://localhost:8090")
                 .defaultStatusHandler(HttpStatusCode::is4xxClientError, clientResponse -> {
                     return clientResponse.bodyToMono(String.class)
-                            .flatMap(errorBody -> Mono.error(new ClientNotFoundException(errorBody)));
+                            .flatMap(errorBody -> Mono.error(new Exception400(errorBody)));
                 })
+                // .defaultStatusHandler(HttpStatusCode::is5xxServerError, clientResponse -> {})
                 .build();
-    }
-
-    @Bean
-    public IClienteRestClient clienteRestClient(WebClient client) {
-        HttpServiceProxyFactory factory = HttpServiceProxyFactory
-                .builderFor(WebClientAdapter.create(client)).build();
-        return factory.createClient(IClienteRestClient.class);
     }
 }

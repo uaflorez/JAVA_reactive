@@ -1,13 +1,10 @@
 package com.example.entrega.repository;
 
 import com.example.entrega.model.Cashout;
-import com.example.entrega.model.Client;
-import org.springframework.boot.autoconfigure.mongo.ReactiveMongoClientFactory;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Flux;
 
+public interface CashoutRepository extends ReactiveMongoRepository<Cashout, String> {
 
-@Repository
-public interface CashoutRepository extends ReactiveMongoClientFactory<Cashout, Long> {
-    Flux<Cashout> findByClient(Long clientId);
+    Flux<Cashout> findByUserId(Long clientId);
 }

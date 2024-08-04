@@ -6,5 +6,5 @@ import reactor.core.publisher.Mono;
 
 public interface ICashoutService {
     Mono<Cashout> createCashout(Cashout cashout);
-    Flux<Cashout> getCashoutsByUserId(Long userId);
+    Flux<Cashout> getCashoutsByClientId(Long clientId);
 }
