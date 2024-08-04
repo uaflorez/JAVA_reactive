@@ -13,9 +13,10 @@ public class ClientController {
 
     @Autowired
     private ClientService clientService;
+
     @GetMapping("/{id}")
-    public Mono<ResponseEntity<Client>> getClientById(@PathVariable Long id) {
-        return clientService.getClientById(id)
+    public Mono<ResponseEntity<Client>> getClientById(@PathVariable String id) {
+        return clientService.getClientById(Long.valueOf(id))
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
@@ -26,8 +27,8 @@ public class ClientController {
     }
 
     @PutMapping("/{id}/balance")
-    public Mono<Client> updateClientBalance(@PathVariable Long id, @RequestBody Map<String, Double> request) {
-        return clientService.updateClientBalance(id, request.get("amount"));
+    public Mono<Client> updateClientBalance(@PathVariable String id, @RequestBody Map<String, Double> request) {
+        return clientService.updateClientBalance(Long.valueOf(id), request.get("amount"));
     }
 
 }

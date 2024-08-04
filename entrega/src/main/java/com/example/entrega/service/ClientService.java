@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
-public class ClientService {
+public class ClientService implements IClientService {
     @Autowired
     private ClientRepository clientRepository;
 
@@ -20,7 +20,7 @@ public class ClientService {
     }
 
     public Mono<Client> updateClientBalance(Long id, Double amount) {
-        return ClientRepository.findById(id)
+        return clientRepository.findById(id)
                 .flatMap(client -> {
                     client.setBalance(client.getBalance() + amount);
                     return clientRepository.save(client);
