@@ -1,10 +1,10 @@
-package com.example.digitalbanking;
+package com.example.entrega;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TransaccionesApplicationTests {
+class EntregaApplicationTests {
 
 	@Test
 	void contextLoads() {

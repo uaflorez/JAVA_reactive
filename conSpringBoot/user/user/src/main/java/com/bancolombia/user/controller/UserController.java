@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/user")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -21,25 +21,17 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        Optional<User> user = userService.getUserById(id);
-        return user.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-    }
-
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User savedUser = userService.saveUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+    public ResponseEntity<User> create(@RequestBody User user) {
+        User entity = userService.saveUser(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(entity);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
-        Optional<User> existingUser = userService.getUserById(id);
-
-        if (existingUser.isPresent()) {
-            User user = existingUser.get();
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User userDetails) {
+        Optional<User> entity = userService.getUserById(id);
+        if (entity.isPresent()) {
+            User user = entity.get();
             user.setName(userDetails.getName());
             user.setEmail(userDetails.getEmail());
             User updatedUser = userService.saveUser(user);
