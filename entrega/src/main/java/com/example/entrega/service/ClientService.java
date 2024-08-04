@@ -1,28 +1,29 @@
 package com.example.entrega.service;
 
 import com.example.entrega.model.Client;
+import com.example.entrega.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
-public class ClientService implements IClientService {
-
+public class ClientService {
     @Autowired
-    private ClientService clientService;
+    private ClientRepository clientRepository;
 
-    @Override
     public Mono<Client> getClientById(Long id) {
-        return null;
+        return clientRepository.findById(id);
     }
 
-    @Override
     public Mono<Client> createClient(Client client) {
-        return null;
+        return clientRepository.save(client);
     }
 
-    @Override
     public Mono<Client> updateClientBalance(Long id, Double amount) {
-        return null;
+        return ClientRepository.findById(id)
+                .flatMap(client -> {
+                    client.setBalance(client.getBalance() + amount);
+                    return clientRepository.save(client);
+                });
     }
 }

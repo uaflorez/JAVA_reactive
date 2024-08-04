@@ -17,6 +17,6 @@ public class Cashout {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
+    private Long clientId;
     private Double amount;
 }
