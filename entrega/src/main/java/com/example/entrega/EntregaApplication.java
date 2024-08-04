@@ -1,14 +1,13 @@
-package com.bancolombia.user;
+package com.example.entrega;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MsuserApplication {
+public class EntregaApplication {
 
 	public static void main(String[] args) {
-
-		SpringApplication.run(MsuserApplication.class, args);
+		SpringApplication.run(EntregaApplication.class, args);
 	}
 
 }

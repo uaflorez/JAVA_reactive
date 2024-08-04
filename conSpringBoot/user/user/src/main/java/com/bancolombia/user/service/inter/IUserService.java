@@ -1,4 +1,4 @@
-package com.bancolombia.user.service;
+package com.bancolombia.user.service.inter;
 
 import com.bancolombia.user.entity.User;
 

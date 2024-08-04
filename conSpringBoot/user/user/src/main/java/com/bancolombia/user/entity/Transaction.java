@@ -1,9 +1,6 @@
 package com.bancolombia.user.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 @Entity
@@ -11,27 +8,52 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String tipo;
-    private double monto;
+    private String type;
+    private double amount;
+    private String data;
 
-    public String getTipo() {
-        return tipo;
+    @ManyToOne
+    @JoinColumn(name = "bank_account_id")
+    private BankAccount bankAccount;
+
+    public Long getId() {
+        return id;
     }
-    public double getMonto() {
-        return monto;
-    }
-
-
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public String getType() {
+        return type;
     }
 
-    public void setMonto(double monto) {
-        this.monto = monto;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public BankAccount getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
     }
 }
+
